@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shohjahon Erkinov – Dasturchi portfoliosi</title>
+<meta name="description" content="TATU talabasi, fullstack dasturchi bo’lish yo’lida. Loyihalar, ko’nikmalar va bog’lanish.">
+<meta name="theme-color" content="#05060d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@property --p{syntax:"<number>";inherits:false;initial-value:0}
+:root{--bg:#05060d;--panel:rgba(14,18,38,.62);--line:rgba(140,150,255,.2);--ink:#e9edff;--mut:#8a94b8;--a:#a78bfa;--b:#5eead4;
+--head:"Syne","Segoe UI",system-ui,sans-serif;--body:"Manrope","Segoe UI",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px;color-scheme:dark;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.7;padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--b);outline-offset:3px;border-radius:6px}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.glow{position:fixed;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(167,139,250,.16),transparent 65%);left:-999px;top:-999px}
+main,header,footer{position:relative;z-index:1}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--a),var(--b));z-index:50}
+
+header{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:rgba(5,6,13,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;height:60px}
+.logo{font-family:var(--head);font-weight:800;text-decoration:none;padding:3px 10px;border:1px solid var(--line);border-radius:8px}
+nav{display:flex;gap:2px;margin-left:auto}
+nav a{text-decoration:none;color:var(--mut);padding:6px 10px;border-radius:8px;font-size:.92rem}
+nav a:hover{color:var(--ink);background:var(--panel)}
+.chip{font:400 .78rem var(--mono);color:var(--b);border:1px solid var(--line);border-radius:99px;padding:3px 12px;white-space:nowrap}
+.chip::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--b);margin-right:8px;animation:pl 2s infinite}
+@keyframes pl{50%{opacity:.25}}
+@media(max-width:900px){.chip{display:none}}
+@media(max-width:640px){nav a:nth-child(1),nav a:nth-child(2),nav a:nth-child(4){display:none}.bar{gap:10px}}
+
+.hud{position:relative;border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);border-radius:6px}
+.hud::before,.hud::after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--b);pointer-events:none}
+.hud::before{top:-2px;left:-2px;border-right:0;border-bottom:0}
+.hud::after{bottom:-2px;right:-2px;border-left:0;border-top:0}
+
+.hero{padding-block:96px 80px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:40px;align-items:center}
+.mono{font:400 .82rem var(--mono);color:var(--mut)}
+h1{font-family:var(--head);font-weight:800;font-size:clamp(2rem,9.6vw,4.8rem);line-height:1.02;letter-spacing:-.04em;margin:14px 0 22px;min-height:2.05em;overflow-wrap:anywhere}
+.lead{color:var(--mut);font-size:1.1rem;max-width:54ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-block;padding:13px 26px;border-radius:6px;text-decoration:none;font-weight:700;border:1px solid var(--line);background:var(--panel);cursor:pointer;font:700 1rem var(--body);color:var(--ink);transition:transform .15s,border-color .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-3px);border-color:var(--b);box-shadow:0 8px 28px -10px var(--b)}
+.btn.pri{background:linear-gradient(135deg,var(--a),#7c6cf0);border-color:transparent;color:#0a0820}
+.console{padding:22px;font:400 .88rem/2 var(--mono)}
+.console div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line)}
+.console div:last-child{border:0}
+.console span:first-child{color:var(--mut)}
+.console b{font-weight:500;color:var(--b);text-align:right;min-width:0;overflow-wrap:anywhere}
+@media(max-width:860px){.hero{grid-template-columns:minmax(0,1fr);padding-top:60px}}
+
+.marquee{border-block:1px solid var(--line);overflow:hidden;background:rgba(10,13,28,.8)}
+.track{display:flex;gap:48px;width:max-content;padding:15px 0;animation:sl 30s linear infinite;font:800 1.05rem var(--head);color:var(--mut)}
+.track span::before{content:"";display:inline-block;width:8px;height:8px;margin-right:14px;background:var(--b);transform:rotate(45deg)}
+@keyframes sl{to{transform:translateX(-50%)}}
+
+section{padding:88px 0}
+h2{font-family:var(--head);font-weight:800;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:-.03em;margin-bottom:10px}
+.sub{color:var(--mut);max-width:60ch;margin-bottom:38px}
+@media(max-width:560px){section{padding:60px 0}.hero{padding-block:48px 44px;gap:32px}.cta .btn{flex:1 1 auto;text-align:center}.console{padding:14px 16px;font-size:.82rem}.lead{font-size:1rem}}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{padding:26px}
+.tile.big{grid-column:span 3}
+.num{display:block;font:800 1.9rem var(--head);margin-bottom:6px}
+.tile p{color:var(--mut)}
+@media(max-width:760px){.grid3{grid-template-columns:1fr 1fr}.tile.big,.tile.last{grid-column:span 2}}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.skill{padding:24px;text-align:center}
+.gauge{position:relative;width:112px;height:112px;margin:0 auto 14px}
+.ring{width:100%;height:100%;border-radius:50%;background:conic-gradient(var(--b) calc(var(--p)*1%),var(--line) 0);-webkit-mask:radial-gradient(farthest-side,transparent 72%,#000 73%);mask:radial-gradient(farthest-side,transparent 72%,#000 73%);transition:--p 1.4s cubic-bezier(.2,.8,.2,1)}
+.gauge span{position:absolute;inset:0;display:grid;place-items:center;font:500 1.1rem var(--mono)}
+.skill h3{font:800 1.1rem var(--head)}
+.skill p{color:var(--mut);font-size:.9rem;margin-top:4px}
+
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;perspective:900px}
+.proj{padding:26px;display:flex;flex-direction:column;gap:12px;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s,border-color .2s}
+.proj:hover{border-color:var(--a)}
+.proj h3{font:800 1.3rem var(--head)}
+.proj p{color:var(--mut);flex:1;font-size:.95rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:400 .74rem var(--mono);border:1px solid var(--line);border-radius:4px;padding:1px 9px;color:var(--mut)}
+.st{font:500 .78rem var(--mono);color:var(--b)}
+.st.plan{color:var(--mut)}
+.proj a{color:var(--a);font-size:.92rem}
+
+.road{list-style:none;display:flex;gap:16px;overflow-x:auto;padding:6px 22px 20px;scroll-snap-type:x mandatory;counter-reset:s}
+.road li{flex:0 0 min(300px,80vw);scroll-snap-align:start;padding:24px;counter-increment:s}
+.road li::before{content:"0" counter(s);display:block;font:500 .9rem var(--mono);color:var(--mut);margin-bottom:14px}
+.road li.done::before{color:var(--b)}
+.road li.now{border-color:var(--a)}
+.road li.now::before{color:var(--a)}
+.road h3{font:800 1.05rem var(--head);margin-bottom:8px}
+.road p{color:var(--mut);font-size:.92rem}
+
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:18px}
+.cc{padding:26px;display:flex;flex-direction:column;gap:12px}
+.cc h3{font:800 1.2rem var(--head)}
+.val{font:500 1rem var(--mono);overflow-wrap:anywhere;color:var(--b)}
+.val a{display:block;text-decoration:none}
+.val a+a{margin-top:6px}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.row .btn{padding:9px 16px;font-size:.9rem}
+footer{padding:28px 0 46px;color:var(--mut);font-size:.88rem;text-align:center;border-top:1px solid var(--line)}
+@media(max-width:560px){.skills{grid-template-columns:1fr 1fr;gap:12px}.skill{padding:18px 10px}.skill:last-child:nth-child(odd){grid-column:span 2}.gauge{width:96px;height:96px}.tile{padding:20px}.cc{padding:20px}}
+@media(pointer:coarse){.glow{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track,.chip::before{animation:none}.proj,.btn,.ring{transition:none}}
+
+h1{font-size:clamp(1.5rem,8.2vw,4rem);letter-spacing:-.03em;overflow-wrap:normal;word-break:normal;min-height:0}
+.nw{display:block;white-space:nowrap}
+.grid3>*{min-width:0}
+.num{font-size:clamp(1.3rem,6vw,1.9rem)}
+.skill h3{font-size:clamp(.88rem,3.8vw,1.1rem)}
+@media(max-width:760px){.grid3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:-22px;padding:4px 22px 16px;scrollbar-width:none}.grid3>*{flex:0 0 78%;scroll-snap-align:center}.tile.big,.tile.last{grid-column:auto}}
+.nebula{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(60% 50% at 82% 6%,rgba(124,92,255,.24),transparent 70%),radial-gradient(50% 45% at 6% 88%,rgba(20,184,166,.15),transparent 70%),radial-gradient(45% 40% at 45% 55%,rgba(59,60,170,.14),transparent 70%);animation:br 20s ease-in-out infinite alternate}
+@keyframes br{to{transform:scale(1.12) translate(-1.5%,1.5%)}}
+.pop{cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.pop:hover{border-color:var(--a);box-shadow:0 14px 40px -18px var(--a)}
+dialog{border:0;padding:0;background:transparent;color:var(--ink);margin:auto;width:min(540px,calc(100vw - 28px));overflow:visible}
+dialog::backdrop{background:rgba(3,4,12,.62);backdrop-filter:blur(8px)}
+dialog[open]{animation:rise .5s cubic-bezier(.2,.9,.25,1.08),fl 7s ease-in-out .5s infinite}
+dialog[open]::backdrop{animation:fd .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(46px) scale(.9)}}
+@keyframes fl{50%{transform:translateY(-7px)}}
+@keyframes fd{from{opacity:0}}
+.in{position:relative;padding:30px 26px;border-radius:30px;border:1px solid rgba(167,139,250,.35);background:linear-gradient(160deg,rgba(28,32,70,.94),rgba(12,15,36,.96));box-shadow:0 40px 100px -30px rgba(124,92,255,.7),inset 0 1px 0 rgba(255,255,255,.08);max-height:84vh;overflow:auto}
+.in h3{font:800 1.5rem var(--head);margin:6px 0 14px;padding-right:34px;overflow-wrap:anywhere}
+.in p{color:#c3cbe6;margin-bottom:12px}
+.in .tags{margin:6px 0 12px}
+.in .lk{display:inline-block;margin-right:14px;color:var(--b)}
+.x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink);font-size:1.3rem;cursor:pointer}
+.lv{height:8px;border-radius:99px;background:var(--line);margin:6px 0 4px;overflow:hidden}
+.lv i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));border-radius:99px}
+html:has(dialog[open]){overflow:hidden}
+@media(prefers-reduced-motion:reduce){dialog[open],.nebula{animation:none}}
+:root{--mut:#aab4d2;--ink:#eef2ff}
+body{font-size:1rem;line-height:1.65;text-rendering:optimizeLegibility}
+.sub,.lead{line-height:1.7;max-width:62ch}
+.sub{font-size:1.05rem}
+h2{font-size:clamp(1.7rem,4.6vw,2.6rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
+.proj h3,.road h3,.skill h3,.cc h3,.in h3,.num{font-family:var(--body);font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.proj h3{font-size:clamp(1.2rem,4.8vw,1.45rem)}
+.road h3,.cc h3{font-size:1.15rem}
+.skill h3{font-size:1.02rem}
+.num{font-size:clamp(1.4rem,5.4vw,1.8rem);margin-bottom:8px}
+.in h3{font-size:clamp(1.35rem,5.4vw,1.7rem)}
+.proj p,.road p,.tile p{font-size:.98rem;line-height:1.6}
+.skill p{font-size:.9rem;line-height:1.55}
+.proj,.road li,.tile,.cc{padding:24px 22px}
+.proj{gap:14px}
+.proj a{display:inline-block;align-self:flex-start;color:var(--b);text-decoration:none;border-bottom:1px solid currentColor;padding:2px 0;font-weight:700}
+.track{font-family:var(--body);font-weight:700;letter-spacing:.01em}
+.tag{font-size:.78rem;padding:3px 10px}
+.in p{font-size:1.02rem;line-height:1.7}
+@media(min-width:900px){body{font-size:1.04rem}.lead{font-size:1.18rem}}
+</style>
+</head>
+<body>
+<div id="prog"></div><div class="nebula" aria-hidden="true"></div><canvas id="bg" aria-hidden="true"></canvas><div class="glow" id="glow"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">SE</a>
+    <nav aria-label="Asosiy menyu">
+      <a href="#about">Men</a><a href="#skills">Ko’nikmalar</a><a href="#projects">Loyihalar</a><a href="#roadmap">Yo’l</a><a href="#contact">Bog’lanish</a>
+    </nav>
+    <span class="chip">JavaScript o’rganmoqda</span>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="mono">// salom, men</p>
+      <h1 id="name" aria-label="Shohjahon Erkinov"><span class="nw">Shohjahon</span><span class="nw">Erkinov</span></h1>
+      <p class="lead">TATU talabasiman, axborot tizimlari va texnologiyalari yo’nalishida o’qiyman. Veb-saytlar va ilovalar yasashni o’rganyapman. Maqsadim: fullstack dasturchi bo’lish.</p>
+      <div class="cta">
+        <a class="btn pri" href="#projects">Loyihalar</a>
+        <a class="btn" href="#contact">Bog’lanish</a>
+      </div>
+    </div>
+    <div class="hud console" aria-label="Holat paneli">
+      <div><span>shahar</span><b>Toshkent</b></div>
+      <div><span>vaqt</span><b id="clock">--:--:--</b></div>
+      <div><span>universitet</span><b>TATU</b></div>
+      <div><span>fokus</span><b>HTML, CSS, JS</b></div>
+      <div><span>tillar</span><b>uz, ru, en</b></div>
+      <div><span>holat</span><b>o’rganmoqda</b></div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <section id="about"><div class="wrap">
+    <h2>Men haqimda</h2><p class="sub">Kartalarni yon tomonga suring va bosib batafsil ko’ring.</p>
+    <div class="grid3" id="aboutList"></div>
+  </div></section>
+
+  <section id="skills"><div class="wrap">
+    <h2>Ko’nikmalar</h2><p class="sub">Darajalarni halol yozaman va o’sgan sari yangilayman. Batafsil uchun kartani bosing.</p>
+    <div class="skills" id="skillList"></div>
+  </div></section>
+
+  <section id="projects"><div class="wrap">
+    <h2>Loyihalar</h2><p class="sub">Har bir yangi loyiha shu yerga qo’shiladi. Batafsil uchun kartani bosing.</p>
+    <div class="projects" id="projectList"></div>
+  </div></section>
+
+  <section id="roadmap">
+    <div class="wrap"><h2>Yo’l xaritasi</h2><p class="sub">Keyingi bosqichlar. Yon tomonga suring, bosib batafsil ko’ring.</p></div>
+    <ol class="road" id="roadList"></ol>
+  </section>
+
+  <section id="contact"><div class="wrap">
+    <h2>Bog’lanish</h2><p class="sub">Quyidagi usullarning istalganida bog’lanishingiz mumkin.</p>
+    <div class="contacts">
+      <article class="hud cc">
+        <h3>Telefon</h3>
+        <div class="val"><a href="tel:+998501000621">+998 50 100 06 21</a></div>
+        <div class="row"><a class="btn" href="tel:+998501000621">Qo’ng’iroq qilish</a><button class="btn" data-copy="+998501000621">Nusxalash</button></div>
+      </article>
+      <article class="hud cc">
+        <h3>Telegram</h3>
+        <div class="val"><a href="https://t.me/shokh_afx_00">@shokh_afx_00</a><a href="https://t.me/S_Erkinov07">@S_Erkinov07</a></div>
+        <div class="row"><a class="btn" href="https://t.me/shokh_afx_00">Yozish</a><button class="btn" data-copy="@shokh_afx_00">Nusxalash</button></div>
+      </article>
+      <article class="hud cc">
+        <h3>Elektron pochta</h3>
+        <div class="val"><a href="mailto:shohjahonerkinov2222@gmail.com">shohjahonerkinov2222@gmail.com</a></div>
+        <div class="row"><a class="btn" href="mailto:shohjahonerkinov2222@gmail.com">Xat yuborish</a><button class="btn" data-copy="shohjahonerkinov2222@gmail.com">Nusxalash</button></div>
+      </article>
+    </div>
+  </div></section>
+</main>
+<footer><div class="wrap">© <span id="year"></span> Shohjahon Erkinov. Kichik qadamlar bilan katta maqsadlarga.</div></footer>
+<dialog id="dlg" aria-label="Batafsil ma’lumot"><div class="in"><button class="x" id="dx" aria-label="Yopish">×</button><div id="dc"></div></div></dialog>
+
+<script>
+/* ====== SHU YERDAN O'ZGARTIRASIZ ======
+   Yangi loyiha: projects massiviga {...} qo'shing. Daraja: level 0..100.
+   Yo'l xaritasi holati: "done" (tugagan), "now" (hozir) yoki "" (keyingi). */
+const about = [
+  { title: "TATU", short: "Toshkent axborot texnologiyalari universiteti talabasi.", detail: "Toshkent axborot texnologiyalari universitetida axborot tizimlari va texnologiyalari yo’nalishida o’qiyman." },
+  { title: "Toshkent", short: "O’zbekiston", detail: "Toshkent, O’zbekiston. Vaqt mintaqasi: UTC+5. Hozirgi vaqtim yuqoridagi holat panelida ko’rinadi." },
+  { title: "Hozir", short: "HTML, CSS va JavaScript o’rganmoqda", detail: "Hozirgi fokusim: HTML, CSS va JavaScript. Maqsad: shu portfolioni o’zim noldan qayta yozish." },
+  { title: "Maqsad", short: "Fullstack dasturchi bo’lish", detail: "Frontend va backend ni birga biladigan fullstack dasturchi bo’lish yo’lida bosqichma-bosqich o’rganyapman." }
+];
+const skills = [
+  { title: "C++", level: 35, short: "Universitetda o’tilgan", detail: "Universitetda o’tilgan: o’zgaruvchilar, sikllar va funksiyalar. Hozir asoslarni takrorlayapman." },
+  { title: "HTML va CSS", level: 25, short: "Hozir o’rganyapman", detail: "Sahifa tuzilmasi va dizayn asoslarini o’rganyapman. Maqsad: portfolioni o’zim noldan yozish." },
+  { title: "JavaScript", level: 10, short: "Keyingi asosiy maqsad", detail: "Hozir boshlang’ich bosqichda. Birinchi mustaqil loyiha: kalkulyator." },
+  { title: "Rus tili", level: 45, short: "O’rta daraja", detail: "Rus tilidagi darslar va hujjatlarni tushuna olaman. Dasturlash kurslarini shu tilda ham o’qiyman." },
+  { title: "Ingliz tili", level: 20, short: "Hujjatlarni o’qish uchun", detail: "Boshlang’ich daraja. Texnik hujjatlarni o’qish uchun har kuni oz-ozdan o’rganyapman." }
+];
+const projects = [
+  { title: "Portfolio saytim", short: "Shaxsiy sayt: ko’nikmalar, loyihalar va aloqa ma’lumotlari.", detail: "Shaxsiy portfolio sayti. Ko’nikmalarim, loyihalarim va aloqa ma’lumotlarim shu yerda jamlangan. Keyingi versiyasini o’zim noldan yozaman.", tags: ["HTML","CSS","JavaScript"], status: "Ishlayapti", live: "https://shokhafx-cyber.github.io/my-website/" },
+  { title: "Kalkulyator", short: "JavaScript asoslarini mustahkamlash uchun birinchi mustaqil loyiha.", detail: "Qo’shish, ayirish, ko’paytirish va bo’lish amallari. JavaScript’da hodisalar va DOM bilan ishlashni mashq qilish uchun.", tags: ["JavaScript"], status: "Rejada" },
+  { title: "Onlayn do’kon (maket)", short: "Mahsulotlar ro’yxati, savatcha va buyurtma sahifasi.", detail: "Mahsulotlar ro’yxati, savatcha va buyurtma sahifasi. React va Node.js bilan ishlashni mashq qilish uchun maket.", tags: ["React","Node.js"], status: "Rejada" }
+];
+const road = [
+  { state: "done", title: "C++ asoslari", short: "Universitetda: o’zgaruvchilar, sikllar, funksiyalar.", detail: "Dasturlash mantiqining asoslari: o’zgaruvchilar, shartlar, sikllar va funksiyalar." },
+  { state: "now", title: "HTML, CSS, JavaScript", short: "Hozirgi bosqich. Maqsad: shu portfolioni o’zim noldan yozish.", detail: "Hozirgi bosqich. Oldin sahifa tuzilmasi va dizayn, keyin JavaScript. Maqsad: shu portfolioni o’zim noldan yozish." },
+  { state: "", title: "React va Git", short: "Komponentlar bilan ishlash, kodni GitHub’da yuritish.", detail: "React komponentlari bilan ishlash, Git orqali o’zgarishlarni saqlash va GitHub’da loyihalarni yuritish." },
+  { state: "", title: "Node.js va ma’lumotlar bazasi", short: "Server tomoni: to’liq backend yozish.", detail: "Server tomoni: API yozish, ma’lumotlar bazasi bilan ishlash va to’liq ilova yaratish." },
+  { state: "", title: "Stajirovka va birinchi ish", short: "Real jamoada junior dasturchi sifatida ishlash.", detail: "Real jamoada ishlash, kodni ko’rib chiqish (code review) va jamoaviy ishlash tajribasini olish." }
+];
+const stack = ["HTML","CSS","JavaScript","React","Node.js","Git","C++","Русский","English"];
+/* ====== ============================== ====== */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+$("track").innerHTML = [...stack, ...stack].map(t => `<span>${esc(t)}</span>`).join("");
+const DATA = { about, skills, projects, road };
+const LBL = { about: "Men haqimda", skills: "Ko’nikma", projects: "Loyiha", road: "Bosqich" };
+const pop = (k, i, cls, inner, tag = "article") => `<${tag} class="hud ${cls} pop" data-k="${k}" data-i="${i}" tabindex="0" role="button">${inner}</${tag}>`;
+$("aboutList").innerHTML = about.map((a, i) => pop("about", i, "tile", `<span class="num">${esc(a.title)}</span><p>${esc(a.short)}</p>`)).join("");
+$("skillList").innerHTML = skills.map((s, i) => pop("skills", i, "skill", `<div class="gauge"><div class="ring" data-p="${s.level}" role="img" aria-label="${esc(s.title)} ${s.level} foiz"></div><span>${s.level}%</span></div><h3>${esc(s.title)}</h3><p>${esc(s.short)}</p>`)).join("");
+$("projectList").innerHTML = projects.map((p, i) => pop("projects", i, "proj", `<span class="st ${p.status === "Rejada" ? "plan" : ""}">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p>${esc(p.short)}</p><div class="tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>${p.live ? `<a href="${esc(p.live)}">Saytni ochish</a>` : ""}${p.code ? ` <a href="${esc(p.code)}">Kod (GitHub)</a>` : ""}`)).join("");
+$("roadList").innerHTML = road.map((r, i) => pop("road", i, r.state, `<h3>${esc(r.title)}</h3><p>${esc(r.short)}</p>`, "li")).join("");
+$("year").textContent = new Date().getFullYear();
+setTimeout(() => document.querySelectorAll(".ring").forEach(r => r.style.setProperty("--p", r.dataset.p)), 300);
+
+/* Ism "dekodlanish" effekti */
+(function () {
+  if (reduce) return;
+  const ch = "abcdefghijklmnopqrstuvwxyz0123456789#$%&";
+  document.querySelectorAll("#name .nw").forEach((el, k) => {
+    const t = el.textContent; let f = 0;
+    setTimeout(() => {
+      const id = setInterval(() => {
+        el.textContent = [...t].map((c, i) => i < f / 2 ? c : ch[Math.floor(Math.random() * ch.length)]).join("");
+        if (++f > t.length * 2) { el.textContent = t; clearInterval(id); }
+      }, 35);
+    }, k * 250);
+  });
+})();
+
+/* Toshkent vaqti */
+const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Tashkent", hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" });
+const tick = () => $("clock").textContent = fmt.format(new Date());
+tick(); setInterval(tick, 1000);
+
+/* Scroll chizig'i */
+addEventListener("scroll", () => {
+  const h = document.documentElement;
+  $("prog").style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight || 1) * 100) + "%";
+}, { passive: true });
+
+/* Nusxalash tugmalari */
+document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", async () => {
+  const old = b.textContent;
+  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Nusxalandi"; }
+  catch (e) { b.textContent = "Qo’lda nusxalang"; }
+  setTimeout(() => b.textContent = old, 1500);
+}));
+
+/* 3D qiyshayish (loyiha kartalari) */
+document.querySelectorAll(".proj").forEach(c => {
+  c.addEventListener("pointermove", e => {
+    if (reduce || e.pointerType === "touch") return;
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--ry", ((e.clientX - r.left) / r.width - .5) * 10 + "deg");
+    c.style.setProperty("--rx", -((e.clientY - r.top) / r.height - .5) * 10 + "deg");
+  });
+  c.addEventListener("pointerleave", () => { c.style.setProperty("--rx", "0deg"); c.style.setProperty("--ry", "0deg"); });
+});
+
+/* Fon: aylanuvchi galaktika, miltillovchi yulduzlar, uchar yulduz */
+const cv = $("bg"), cx = cv.getContext("2d"), m = { x: 0, y: 0 };
+let W, H, G = [], F = [], T = 0, sh = null;
+function size() {
+  const d = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
+  cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0);
+  G = Array.from({ length: W < 700 ? 280 : 560 }, () => {
+    const r = Math.pow(Math.random(), 1.5), a = Math.floor(Math.random() * 3) * 2.094 + r * 5 + (Math.random() - .5) * .7;
+    return { r, a, s: Math.random() * 1.3 + .5, t: Math.random() * 6.28, h: r < .3 ? 285 : r < .65 ? 225 : 175 };
+  });
+  F = Array.from({ length: W < 700 ? 80 : 160 }, () => ({ x: Math.random() * W, y: Math.random() * H, z: Math.random() * .8 + .2, t: Math.random() * 6.28 }));
+}
+function frame() {
+  T++; cx.clearRect(0, 0, W, H);
+  const gx = W * .74 + m.x * .012, gy = H * .3 + m.y * .012, R = Math.min(W * .9, H * 1.1) * .62, tl = -.4, ct = Math.cos(tl), st = Math.sin(tl);
+  const core = cx.createRadialGradient(gx, gy, 0, gx, gy, R * .45);
+  core.addColorStop(0, "rgba(200,180,255,.32)"); core.addColorStop(.4, "rgba(124,92,255,.12)"); core.addColorStop(1, "rgba(0,0,0,0)");
+  cx.fillStyle = core; cx.fillRect(gx - R, gy - R, R * 2, R * 2);
+  for (const f of F) {
+    const x = ((f.x - m.x * f.z * .03) % W + W) % W, y = ((f.y - scrollY * f.z * .12) % H + H) % H;
+    cx.fillStyle = `rgba(220,230,255,${.25 + .55 * Math.abs(Math.sin(f.t + T * .02 * f.z))})`; cx.fillRect(x, y, f.z * 1.8, f.z * 1.8);
+  }
+  for (const s of G) {
+    const a = s.a + T * .0007 / (s.r + .25), x = Math.cos(a) * s.r * R, y = Math.sin(a) * s.r * R * .42;
+    cx.fillStyle = `hsla(${s.h},85%,78%,${.3 + .6 * Math.abs(Math.sin(s.t + T * .03))})`;
+    cx.fillRect(gx + x * ct - y * st, gy + x * st + y * ct, s.s, s.s);
+  }
+  if (!sh && Math.random() < .004) sh = { x: Math.random() * W, y: Math.random() * H * .5, l: 0 };
+  if (sh) {
+    const g = cx.createLinearGradient(sh.x, sh.y, sh.x - 90, sh.y - 40);
+    g.addColorStop(0, "rgba(255,255,255,.9)"); g.addColorStop(1, "rgba(255,255,255,0)");
+    cx.strokeStyle = g; cx.lineWidth = 1.6; cx.beginPath(); cx.moveTo(sh.x, sh.y); cx.lineTo(sh.x - 90, sh.y - 40); cx.stroke();
+    sh.x += 14; sh.y += 6; if (++sh.l > 40) sh = null;
+  }
+  if (!reduce) requestAnimationFrame(frame);
+}
+size(); frame(); addEventListener("resize", () => { size(); if (reduce) frame(); });
+addEventListener("pointermove", e => { m.x = e.clientX - W / 2; m.y = e.clientY - H / 2; const g = $("glow"); g.style.left = e.clientX + "px"; g.style.top = e.clientY + "px"; });
+
+/* Bulutcha oyna: kartani bosganda ko'tariladi */
+const dlg = $("dlg"), dc = $("dc");
+const STATE = { done: "Tugagan", now: "Hozirgi bosqich", "": "Keyingi bosqich" };
+function openCard(k, i) {
+  const it = DATA[k][i];
+  dc.innerHTML = `<span class="mono">${LBL[k]}${k === "road" ? " · " + STATE[it.state] : ""}${it.status ? " · " + esc(it.status) : ""}</span>
+    <h3>${esc(it.title)}</h3>
+    ${it.level != null ? `<div class="lv"><i style="width:${it.level}%"></i></div><p class="mono">daraja: ${it.level}%</p>` : ""}
+    <p>${esc(it.detail)}</p>
+    ${it.tags ? `<div class="tags">${it.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>` : ""}
+    ${it.live ? `<a class="lk" href="${esc(it.live)}">Saytni ochish</a>` : ""}${it.code ? `<a class="lk" href="${esc(it.code)}">Kod (GitHub)</a>` : ""}`;
+  dlg.showModal();
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("a,button")) return;
+  const c = e.target.closest(".pop"); if (c) openCard(c.dataset.k, +c.dataset.i);
+});
+document.addEventListener("keydown", e => {
+  if ((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("pop")) { e.preventDefault(); openCard(e.target.dataset.k, +e.target.dataset.i); }
+});
+$("dx").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+</script>
+</body>
+</html>
